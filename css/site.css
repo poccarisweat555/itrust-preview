@@ -885,7 +885,7 @@ body[data-nav-open='true'] { overflow: hidden; }
   line-height: 1.6;
   color: var(--ink-text-muted);
 }
-.hero__visual { margin-top: clamp(var(--space-10), 5vw, var(--space-16)); }
+.hero__visual { margin-top: clamp(var(--space-12), 6vw, var(--space-20)); }
 
 /* Compact hero for interior pages */
 .page-hero {
@@ -1557,4 +1557,79 @@ body[data-nav-open='true'] { overflow: hidden; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-2) var(--space-5);
   }
+}
+
+/* --- 26. Hero email capture --------------------------------------------- */
+.email-capture { width: 100%; max-width: 36rem; margin-inline: auto; }
+
+.email-capture__row {
+  display: flex;
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.email-capture__field { flex: 1 1 auto; min-width: 0; display: flex; }
+
+.email-capture__input {
+  width: 100%;
+  min-width: 0;
+  min-height: 58px;
+  padding: var(--space-4) var(--space-6);
+  background: #fff;
+  color: var(--text);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: 1.4;
+  box-shadow: 0 2px 10px rgba(7, 11, 20, 0.28);
+  transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  appearance: none;
+}
+/* --text-muted on white clears 4.5:1, so the placeholder stays readable. */
+.email-capture__input::placeholder { color: var(--text-muted); opacity: 1; }
+.email-capture__input:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 2px 10px rgba(7, 11, 20, 0.28), 0 0 0 4px rgba(59, 91, 255, 0.45);
+}
+.email-capture__input:focus-visible { outline: none; }
+
+.email-capture__btn {
+  flex: none;
+  min-height: 58px;
+  padding-inline: var(--space-7, 1.75rem);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-md);
+  box-shadow: 0 2px 10px rgba(7, 11, 20, 0.28), 0 0 28px rgba(59, 91, 255, 0.34);
+}
+.email-capture__btn:hover:not(:disabled) {
+  box-shadow: 0 2px 10px rgba(7, 11, 20, 0.28), 0 0 34px rgba(59, 91, 255, 0.5);
+}
+
+.email-capture__error {
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 520;
+  line-height: 1.5;
+  /* Light red rather than the on-white severity red: needs to clear 4.5:1 on navy. */
+  color: #FFB4B0;
+  text-align: left;
+}
+.email-capture__error svg { width: 16px; height: 16px; flex: none; margin-top: 2px; }
+.email-capture[data-invalid='true'] .email-capture__error { display: flex; }
+.email-capture[data-invalid='true'] .email-capture__input {
+  border-color: #FF8E88;
+  box-shadow: 0 2px 10px rgba(7, 11, 20, 0.28), 0 0 0 4px rgba(255, 142, 136, 0.32);
+}
+
+/* Stack below the pill's comfortable inline width. */
+@media (max-width: 559px) {
+  .email-capture__row { flex-direction: column; gap: var(--space-3); }
+  .email-capture__btn { width: 100%; }
+  .email-capture__error { justify-content: flex-start; }
 }

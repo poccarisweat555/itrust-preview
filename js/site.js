@@ -314,6 +314,61 @@
     });
   }
 
+  /* --- Hero email capture ----------------------------------------------- */
+  /* Validates inline, then hands the address to the full demo form rather than
+     submitting a half-complete lead from the hero. */
+  (function emailCapture() {
+    var EMAIL = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+    document.querySelectorAll('[data-email-capture]').forEach(function (form) {
+      var input = form.querySelector('input[type="email"]');
+      var out = form.querySelector('[role="alert"] span');
+      if (!input) return;
+
+      function fail(message) {
+        form.setAttribute('data-invalid', 'true');
+        input.setAttribute('aria-invalid', 'true');
+        if (out) out.textContent = message;
+        input.focus();
+      }
+      function clear() {
+        form.setAttribute('data-invalid', 'false');
+        input.setAttribute('aria-invalid', 'false');
+        if (out) out.textContent = '';
+      }
+
+      input.addEventListener('input', function () {
+        if (form.getAttribute('data-invalid') === 'true' && EMAIL.test(input.value.trim())) clear();
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var value = input.value.trim();
+        if (!value) return fail(input.getAttribute('data-msg-required') || 'Enter your work email address.');
+        if (!EMAIL.test(value)) return fail(input.getAttribute('data-msg-type') || 'Enter a valid email address.');
+        clear();
+
+        var target = form.getAttribute('data-target') || '/request-a-demo/';
+        emit('cta_request_demo_click', { label: 'Home hero email capture', page_path: window.location.pathname });
+        window.location.href = target + (target.indexOf('?') > -1 ? '&' : '?') + 'email=' + encodeURIComponent(value);
+      });
+    });
+  })();
+
+  /* --- Carry a captured email into the demo form ------------------------- */
+  (function prefillFromQuery() {
+    var email = new URLSearchParams(window.location.search).get('email');
+    if (!email) return;
+    var field = document.querySelector('form[data-async-form] input[type="email"]');
+    if (!field) return;
+    field.value = email;
+    field.dispatchEvent(new Event('input', { bubbles: true }));
+    // Send the visitor to the first field still needing an answer.
+    var next = Array.prototype.slice
+      .call(document.querySelectorAll('form[data-async-form] input, form[data-async-form] select'))
+      .filter(function (el) { return el.type !== 'hidden' && el.hasAttribute('required') && !el.value; })[0];
+    if (next) next.focus({ preventScroll: true });
+  })();
+
   /* --- Form prefill from a CTA ------------------------------------------ */
   /* A partnership card's CTA jumps to the application form with its own model
      already selected, so the choice is confirmed rather than re-entered. */
