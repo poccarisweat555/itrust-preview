@@ -62,11 +62,24 @@
 <main id="main">
 <section class="page-hero on-ink" aria-labelledby="page-hero-title">
 <span class="page-hero__glow" aria-hidden="true"></span>
+<span class="page-hero__grid-lines" aria-hidden="true"></span>
 <div class="container">
 <div class="page-hero__inner">
 <h1 id="page-hero-title">Built on Cybersecurity Expertise. Designed for Measurable Progress.</h1>
 <p class="page-hero__sub">iTrust brings TrustNet’s expert-led security testing into a modern platform that helps teams manage findings, remediation, retesting, and evidence of closure.</p>
-<div class="btn-row"><a class="btn btn--primary btn--lg" href="/itrust-preview/request-a-demo/" data-track="cta_request_demo_click" data-track-label="About hero"><span>Request a Demo</span><span class="btn__icon btn__icon--arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span></a></div>
+<form class="email-capture" data-email-capture data-target="/itrust-preview/request-a-demo/" novalidate>
+<div class="email-capture__row">
+<div class="email-capture__field">
+<label class="visually-hidden" for="hero-email">Work email</label>
+<input class="email-capture__input" id="hero-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Work Email" required aria-describedby="hero-email-error" aria-invalid="false" data-msg-required="Enter your work email address." data-msg-type="Enter a valid email address, for example name@company.com.">
+</div>
+<button class="btn btn--primary email-capture__btn" type="submit" data-track="cta_request_demo_click" data-track-label="About hero email capture">
+<span>Request a Demo</span>
+<span class="btn__icon btn__icon--arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span>
+</button>
+</div>
+<p class="email-capture__error" id="hero-email-error" role="alert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.2l8.4 14.6H3.6z"/><path d="M12 9.6v4"/><path d="M12 16.2h.01"/></svg><span></span></p>
+</form>
 </div></div></section>
 <section class="section" aria-labelledby="purpose-title">
 <div class="container">

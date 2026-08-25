@@ -62,12 +62,25 @@
 <main id="main">
 <section class="page-hero on-ink" aria-labelledby="page-hero-title">
 <span class="page-hero__glow" aria-hidden="true"></span>
+<span class="page-hero__grid-lines" aria-hidden="true"></span>
 <div class="container">
 <div class="page-hero__inner">
 <h1 id="page-hero-title">Grow With iTrust</h1>
 <p class="page-hero__sub">Partner with iTrust to expand your security offering, create new opportunities, and help clients manage penetration testing through one connected platform.</p>
-<div class="btn-row"><a class="btn btn--primary btn--lg" href="#partner-form" data-track="cta_become_partner_click" data-track-label="Partners hero"><span>Become a Partner</span><span class="btn__icon btn__icon--arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span></a>
-<a class="btn btn--secondary btn--lg" href="#partner-programs" data-track="cta_secondary_click" data-track-label="Partners hero — programs"><span>Explore Partner Programs</span></a></div>
+<form class="email-capture" data-email-capture data-target="#partner-form" novalidate>
+<div class="email-capture__row">
+<div class="email-capture__field">
+<label class="visually-hidden" for="partner-hero-email">Business email</label>
+<input class="email-capture__input" id="partner-hero-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Business Email" required aria-describedby="partner-hero-email-error" aria-invalid="false" data-msg-required="Enter your work email address." data-msg-type="Enter a valid email address, for example name@company.com.">
+</div>
+<button class="btn btn--primary email-capture__btn" type="submit" data-track="cta_become_partner_click" data-track-label="Partners hero email capture">
+<span>Become a Partner</span>
+<span class="btn__icon btn__icon--arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span>
+</button>
+</div>
+<p class="email-capture__error" id="partner-hero-email-error" role="alert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4.2l8.4 14.6H3.6z"/><path d="M12 9.6v4"/><path d="M12 16.2h.01"/></svg><span></span></p>
+</form>
+<p class="page-hero__note">Not sure which program fits? <a href="#partner-programs">Compare the two options</a> first.</p>
 </div></div></section>
 <section class="section section--tight" aria-labelledby="intro-title">
 <div class="container container--narrow">

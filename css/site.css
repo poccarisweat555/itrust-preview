@@ -887,36 +887,66 @@ body[data-nav-open='true'] { overflow: hidden; }
 }
 .hero__visual { margin-top: clamp(var(--space-12), 6vw, var(--space-20)); }
 
-/* Compact hero for interior pages */
+/* Interior-page hero — centred, matching the Home hero's composition. */
 .page-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding-block: clamp(var(--space-12), 6vw, var(--space-20));
+  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+  text-align: center;
 }
 .page-hero__glow {
   position: absolute;
   z-index: -1;
-  left: 50%; top: -55%;
-  width: min(1000px, 140%);
-  aspect-ratio: 1 / 0.8;
+  left: 50%; top: -34%;
+  width: min(1080px, 145%);
+  aspect-ratio: 1 / 0.78;
   transform: translateX(-50%);
-  background: radial-gradient(50% 50% at 50% 50%, rgba(59, 91, 255, 0.30) 0%, rgba(59, 91, 255, 0.08) 46%, transparent 72%);
+  background:
+    radial-gradient(46% 46% at 50% 46%, rgba(72, 104, 255, 0.44) 0%, rgba(59, 91, 255, 0.15) 42%, transparent 72%),
+    radial-gradient(38% 42% at 26% 66%, rgba(33, 185, 235, 0.17) 0%, transparent 70%);
   pointer-events: none;
 }
-.page-hero__inner { max-width: 68ch; }
-.page-hero h1 { margin-top: var(--space-4); }
+/* Same faint grid as the Home hero, so the two read as one system. */
+.page-hero__grid-lines {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(66% 62% at 50% 34%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(66% 62% at 50% 34%, #000 0%, transparent 78%);
+  pointer-events: none;
+}
+
+.page-hero__inner { max-width: 44rem; margin-inline: auto; }
+.page-hero h1 { margin-top: 0; }
 .page-hero__sub {
-  margin-top: var(--space-5);
-  max-width: 62ch;
+  margin-top: var(--space-6);
+  margin-inline: auto;
+  max-width: 60ch;
   font-size: clamp(var(--text-base), 0.95rem + 0.35vw, var(--text-lg));
   line-height: 1.62;
   color: var(--ink-text-secondary);
 }
-.page-hero .btn-row { margin-top: var(--space-8); }
-.page-hero--center .page-hero__inner { margin-inline: auto; text-align: center; }
-.page-hero--center .page-hero__sub { margin-inline: auto; }
-.page-hero--center .btn-row { justify-content: center; }
+.page-hero .btn-row { margin-top: var(--space-8); justify-content: center; }
+.page-hero .email-capture { margin-top: var(--space-8); }
+
+/* Optional microcopy under the capture. */
+.page-hero__note {
+  margin-top: var(--space-5);
+  margin-inline: auto;
+  max-width: 52ch;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--ink-text-muted);
+}
+.page-hero__note a { color: var(--brand-soft); }
+
+/* Legal and utility pages keep a shorter hero — no CTA to make room for. */
+.page-hero--compact { padding-block: clamp(var(--space-12), 6vw, var(--space-16)); }
 
 /* --- 12. Feature / value lists ------------------------------------------ */
 .check-list { display: flex; flex-direction: column; gap: var(--space-4); }

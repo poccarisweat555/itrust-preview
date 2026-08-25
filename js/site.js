@@ -348,7 +348,30 @@
         clear();
 
         var target = form.getAttribute('data-target') || '/request-a-demo/';
-        emit('cta_request_demo_click', { label: 'Home hero email capture', page_path: window.location.pathname });
+        var label = (form.querySelector('[data-track-label]') || {}).getAttribute
+          ? form.querySelector('[data-track-label]').getAttribute('data-track-label')
+          : 'Hero email capture';
+        emit('cta_request_demo_click', { label: label, page_path: window.location.pathname });
+
+        // An anchor target means the form is on this page: fill it in place
+        // rather than reloading, which would lose the visitor's position.
+        if (target.charAt(0) === '#') {
+          var section = document.querySelector(target);
+          var dest = document.querySelector(target + ' form[data-async-form] input[type="email"]')
+            || document.querySelector('form[data-async-form] input[type="email"]');
+          if (dest) {
+            dest.value = value;
+            dest.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          if (section) section.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+          var next = Array.prototype.slice
+            .call(document.querySelectorAll('form[data-async-form] input, form[data-async-form] select'))
+            .filter(function (el) { return el.type !== 'hidden' && el.hasAttribute('required') && !el.value; })[0];
+          if (next) window.setTimeout(function () { next.focus({ preventScroll: true }); }, reduceMotion.matches ? 0 : 420);
+          input.value = '';
+          return;
+        }
+
         window.location.href = target + (target.indexOf('?') > -1 ? '&' : '?') + 'email=' + encodeURIComponent(value);
       });
     });
