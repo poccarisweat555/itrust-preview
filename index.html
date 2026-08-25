@@ -161,17 +161,92 @@ Discover vulnerabilities, confirm their real-world impact through controlled exp
 <p class="step__body">Request retesting, confirm closure with evidence, and track current status through the platform.</p>
 </article>
 </div>
-<div style="margin-top:clamp(2.5rem,4vw,4rem)">
-<figure class="figure"><div class="frame ">
-<div class="frame__bar">
+<figure class="figure figure--center" style="margin-top:clamp(2.5rem,4vw,4rem)" data-reveal>
+<div class="lifecycle" data-lifecycle data-stages="[{&quot;label&quot;:&quot;New&quot;,&quot;description&quot;:&quot;Validated by a TrustNet tester, with evidence attached.&quot;,&quot;owner&quot;:&quot;unassigned&quot;,&quot;days&quot;:0,&quot;status&quot;:&quot;CRITICAL · CVSS 9.1&quot;,&quot;tone&quot;:&quot;critical&quot;,&quot;kicker&quot;:&quot;Evidence&quot;,&quot;body&quot;:&quot;A TrustNet engineer found the customer search filter concatenating input directly into SQL, and extracted table names as proof. The finding lands in iTrust with the payload and response attached.&quot;},{&quot;label&quot;:&quot;Reported&quot;,&quot;description&quot;:&quot;Written up with evidence, inside the assessment report.&quot;,&quot;owner&quot;:&quot;unassigned&quot;,&quot;days&quot;:1,&quot;status&quot;:&quot;CRITICAL · CVSS 9.1&quot;,&quot;tone&quot;:&quot;critical&quot;,&quot;kicker&quot;:&quot;Report&quot;,&quot;body&quot;:&quot;The finding is published into the assessment report with severity, affected endpoint, and reproduction steps. Stakeholder reporting updates at the same time.&quot;},{&quot;label&quot;:&quot;In remediation&quot;,&quot;description&quot;:&quot;Ask iTrust guidance attached, with an owner assigned.&quot;,&quot;owner&quot;:&quot;j.long&quot;,&quot;days&quot;:3,&quot;status&quot;:&quot;CRITICAL · CVSS 9.1&quot;,&quot;tone&quot;:&quot;critical&quot;,&quot;kicker&quot;:&quot;Ask iTrust&quot;,&quot;body&quot;:&quot;Replace the concatenated query with a parameterized statement, allow-list the sort and filter parameters, and restrict the API database role to read-only.&quot;,&quot;code&quot;:&quot;query(\&quot;SELECT * FROM customers WHERE name LIKE ?\&quot;, [\&quot;%\&quot; + q + \&quot;%\&quot;])&quot;},{&quot;label&quot;:&quot;Ready for retest&quot;,&quot;description&quot;:&quot;Your team ships the fix. TrustNet testers verify it.&quot;,&quot;owner&quot;:&quot;j.long&quot;,&quot;days&quot;:9,&quot;status&quot;:&quot;RETEST QUEUED&quot;,&quot;tone&quot;:&quot;info&quot;,&quot;kicker&quot;:&quot;Retest requested&quot;,&quot;body&quot;:&quot;The parameterized query is deployed and submitted for retesting from inside iTrust. A TrustNet engineer replays the original injection payloads.&quot;},{&quot;label&quot;:&quot;Closed, verified&quot;,&quot;description&quot;:&quot;Proven fixed, and kept in the engagement record.&quot;,&quot;owner&quot;:&quot;j.long&quot;,&quot;days&quot;:12,&quot;status&quot;:&quot;CLOSED · VERIFIED&quot;,&quot;tone&quot;:&quot;success&quot;,&quot;kicker&quot;:&quot;Verified closed&quot;,&quot;body&quot;:&quot;The payloads no longer return data. The finding closes with the retest evidence attached, and the full engagement record stays in the platform.&quot;}]">
+<div class="frame__bar lifecycle__bar">
 <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-<span class="frame__url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><span>app.itrustinc.ai/penetration-tests/remediation</span></span>
+<span class="frame__url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><span>itrust / assessments / 2026-ITRUS-005 / findings</span></span>
+<button class="lifecycle__playstate" type="button" data-lifecycle-toggle aria-pressed="false">
+<span class="lifecycle__playdot" aria-hidden="true"></span>
+<span data-lifecycle-playlabel>Pause</span>
+</button>
 </div>
-<div class="frame__media">
-<img src="/itrust-preview/img/remediation-queue-1400.png" srcset="/itrust-preview/img/remediation-queue-1400.png 1400w, /itrust-preview/img/remediation-queue-800.png 800w" sizes="(min-width: 1200px) 1140px, 92vw" width="1400" height="855" alt="iTrust remediation queue listing open findings with severity, affected asset, assigned owner, due date and SLA status." loading="lazy" decoding="async">
+<div class="lifecycle__grid">
+<div class="lifecycle__rail-panel">
+<p class="lifecycle__kicker">Finding lifecycle</p>
+<ol class="lifecycle__rail" aria-label="Finding lifecycle stages"><li class="lifecycle__rail-item">
+<span class="lifecycle__line" aria-hidden="true"></span>
+<button class="lifecycle__stage" type="button" data-stage="0" aria-current="step">
+<span class="lifecycle__node" aria-hidden="true"></span>
+<span class="lifecycle__stage-copy">
+<span class="lifecycle__stage-name">New</span>
+<span class="lifecycle__stage-desc">Validated by a TrustNet tester, with evidence attached.</span>
+</span>
+</button>
+</li><li class="lifecycle__rail-item">
+<span class="lifecycle__line" aria-hidden="true"></span>
+<button class="lifecycle__stage" type="button" data-stage="1" aria-current="false">
+<span class="lifecycle__node" aria-hidden="true"></span>
+<span class="lifecycle__stage-copy">
+<span class="lifecycle__stage-name">Reported</span>
+<span class="lifecycle__stage-desc">Written up with evidence, inside the assessment report.</span>
+</span>
+</button>
+</li><li class="lifecycle__rail-item">
+<span class="lifecycle__line" aria-hidden="true"></span>
+<button class="lifecycle__stage" type="button" data-stage="2" aria-current="false">
+<span class="lifecycle__node" aria-hidden="true"></span>
+<span class="lifecycle__stage-copy">
+<span class="lifecycle__stage-name">In remediation</span>
+<span class="lifecycle__stage-desc">Ask iTrust guidance attached, with an owner assigned.</span>
+</span>
+</button>
+</li><li class="lifecycle__rail-item">
+<span class="lifecycle__line" aria-hidden="true"></span>
+<button class="lifecycle__stage" type="button" data-stage="3" aria-current="false">
+<span class="lifecycle__node" aria-hidden="true"></span>
+<span class="lifecycle__stage-copy">
+<span class="lifecycle__stage-name">Ready for retest</span>
+<span class="lifecycle__stage-desc">Your team ships the fix. TrustNet testers verify it.</span>
+</span>
+</button>
+</li><li class="lifecycle__rail-item">
+<button class="lifecycle__stage" type="button" data-stage="4" aria-current="false">
+<span class="lifecycle__node" aria-hidden="true"></span>
+<span class="lifecycle__stage-copy">
+<span class="lifecycle__stage-name">Closed, verified</span>
+<span class="lifecycle__stage-desc">Proven fixed, and kept in the engagement record.</span>
+</span>
+</button>
+</li></ol>
 </div>
-</div><figcaption>Remediation moves through the platform with an owner and a due date attached to every open finding.</figcaption></figure>
+<div class="lifecycle__detail">
+<div class="lifecycle__detail-head">
+<div>
+<p class="lifecycle__eyebrow">FND-024 · Web application</p>
+<h3 class="lifecycle__title">SQL injection in customer search endpoint</h3>
 </div>
+<span class="lifecycle__status" data-lifecycle-status></span>
+</div>
+<p class="lifecycle__meta">
+<span>owner <strong data-lifecycle-owner></strong></span>
+<span>found by <strong>TrustNet testers</strong></span>
+<span>days open <strong data-lifecycle-days></strong></span>
+</p>
+<div class="lifecycle__progress" aria-hidden="true"><span data-lifecycle-bar></span></div>
+<p class="lifecycle__progress-label" data-lifecycle-progress></p>
+<div class="lifecycle__card" aria-live="polite">
+<p class="lifecycle__card-kicker" data-lifecycle-kicker></p>
+<p class="lifecycle__card-body" data-lifecycle-body></p>
+<code class="lifecycle__code" data-lifecycle-code hidden></code>
+</div>
+<div class="lifecycle__actions">
+<button class="btn btn--primary btn--sm" type="button" data-lifecycle-next>Next stage</button>
+<button class="btn btn--secondary btn--sm lifecycle__replay" type="button" data-lifecycle-replay>Replay</button>
+</div>
+</div></div></div>
+<figcaption>One finding, from validated discovery through to a verified close — every stage carries an owner and an audit trail.</figcaption>
+</figure>
 </div></section>
 <section class="section" aria-labelledby="preview-title">
 <div class="container">

@@ -417,6 +417,103 @@
     });
   })();
 
+  /* --- Finding lifecycle walkthrough ------------------------------------ */
+  /* Advances on its own, so it ships with a real pause control, pauses when
+     the visitor interacts or focuses it, and holds still under reduced motion. */
+  (function lifecycle() {
+    document.querySelectorAll('[data-lifecycle]').forEach(function (root) {
+      var stages;
+      try { stages = JSON.parse(root.getAttribute('data-stages') || '[]'); } catch (e) { return; }
+      if (!stages.length) return;
+
+      var buttons = Array.prototype.slice.call(root.querySelectorAll('[data-stage]'));
+      var status = root.querySelector('[data-lifecycle-status]');
+      var owner = root.querySelector('[data-lifecycle-owner]');
+      var days = root.querySelector('[data-lifecycle-days]');
+      var bar = root.querySelector('[data-lifecycle-bar]');
+      var progress = root.querySelector('[data-lifecycle-progress]');
+      var kicker = root.querySelector('[data-lifecycle-kicker]');
+      var bodyEl = root.querySelector('[data-lifecycle-body]');
+      var code = root.querySelector('[data-lifecycle-code]');
+      var next = root.querySelector('[data-lifecycle-next]');
+      var replay = root.querySelector('[data-lifecycle-replay]');
+      var toggle = root.querySelector('[data-lifecycle-toggle]');
+      var toggleLabel = root.querySelector('[data-lifecycle-playlabel]');
+
+      var current = 0;
+      var timer = null;
+      var playing = false;
+      var last = stages.length - 1;
+
+      function render(index) {
+        current = index;
+        var s = stages[index];
+
+        buttons.forEach(function (b, i) {
+          var state = i < index ? 'done' : i === index ? (i === last ? 'closed' : 'current') : 'todo';
+          b.setAttribute('data-state', state);
+          b.setAttribute('aria-current', i === index ? 'step' : 'false');
+        });
+
+        status.textContent = s.status;
+        status.setAttribute('data-tone', s.tone);
+        owner.textContent = s.owner;
+        days.textContent = String(s.days);
+        bar.style.width = Math.round(((index + 1) / stages.length) * 100) + '%';
+        bar.style.background = index === last ? 'var(--success)' : 'var(--brand)';
+        progress.textContent = 'Stage ' + (index + 1) + ' of ' + stages.length;
+        kicker.textContent = s.kicker;
+        bodyEl.textContent = s.body;
+        if (s.code) { code.textContent = s.code; code.removeAttribute('hidden'); }
+        else { code.textContent = ''; code.setAttribute('hidden', ''); }
+        next.textContent = index === last ? 'Start over' : 'Next stage';
+      }
+
+      function setPlaying(state) {
+        playing = state;
+        window.clearInterval(timer);
+        if (state) {
+          timer = window.setInterval(function () { render((current + 1) % stages.length); }, 4200);
+        }
+        toggle.setAttribute('aria-pressed', String(!state));
+        toggleLabel.textContent = state ? 'Pause' : 'Play';
+      }
+
+      buttons.forEach(function (b, i) {
+        b.addEventListener('click', function () { setPlaying(false); render(i); });
+      });
+      next.addEventListener('click', function () {
+        setPlaying(false);
+        render(current === last ? 0 : current + 1);
+      });
+      replay.addEventListener('click', function () { render(0); setPlaying(true); });
+      toggle.addEventListener('click', function () { setPlaying(!playing); });
+
+      // Pause while the visitor is reading or tabbing through it.
+      root.addEventListener('focusin', function () { if (playing) setPlaying(false); });
+      root.addEventListener('mouseenter', function () { if (playing) setPlaying(false); });
+
+      render(0);
+
+      if (reduceMotion.matches) {
+        setPlaying(false);
+      } else if ('IntersectionObserver' in window) {
+        // Only run while it is actually on screen.
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !playing && current === 0) setPlaying(true);
+            else if (!entry.isIntersecting && playing) setPlaying(false);
+          });
+        }, { threshold: 0.35 });
+        io.observe(root);
+      } else {
+        setPlaying(true);
+      }
+
+      reduceMotion.addEventListener('change', function (ev) { if (ev.matches) setPlaying(false); });
+    });
+  })();
+
   /* --- Product tour ----------------------------------------------------- */
   /* The third-party embed is inserted only on activation: it keeps the page
      scrollable past the tour, avoids loading a third-party frame on every
