@@ -250,23 +250,181 @@ Discover vulnerabilities, confirm their real-world impact through controlled exp
 </div></section>
 <section class="section" aria-labelledby="preview-title">
 <div class="container">
-<div class="split split--visual-first">
-<figure class="figure"><div class="frame ">
+<div class="section-head section-head--center">
+<h2 id="preview-title">One View from Discovery to Closure</h2>
+<p class="lede">See validated findings, remediation status, retest activity, and historical progress in a centralized workspace designed for security and engineering collaboration.</p>
+</div>
+<div class="btn-row btn-row--center" data-reveal style="margin-top:var(--space-6)"><a class="btn btn--secondary" href="/itrust-preview/platform/" data-track="cta_secondary_click" data-track-label="Home — explore platform"><span>Explore the Platform</span><span class="btn__icon btn__icon--arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span></a></div>
+<figure class="figure figure--center" style="margin-top:clamp(2.5rem,4vw,4rem)" data-reveal>
+<div class="dash" data-dashboard>
 <div class="frame__bar">
 <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
 <span class="frame__url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg><span>app.itrustinc.ai/dashboard</span></span>
 </div>
-<div class="frame__media">
-<img src="/itrust-preview/img/platform-overview-1600.png" srcset="/itrust-preview/img/platform-overview-1600.png 1600w, /itrust-preview/img/platform-overview-900.png 900w" sizes="(min-width: 1100px) 1000px, (min-width: 940px) 55vw, 92vw" width="1600" height="982" alt="iTrust overview dashboard showing a unified posture rating alongside module summaries for iTrust Rating, Vendors and Penetration Tests." loading="lazy" decoding="async">
+<div class="dash__body">
+<div class="dash__head">
+<h3 class="dash__title">Overview</h3>
+<span class="dash__head-actions" aria-hidden="true">
+<span class="dash__btn" data-variant="secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="2.6"/><path d="M12 3.4l1.5.3.5 2 1.7 1 1.9-.8 1.1 1.9-1.4 1.5.2 1.7 1.8 1-.5 2.1-2 .2-1 1.4.5 2-1.9 1-1.4-1.4-1.7.3-.8 1.9h-2.1l-.8-1.9-1.7-.3-1.4 1.4-1.9-1 .5-2-1-1.4-2-.2L3 12.9l1.8-1 .2-1.7L3.6 8.7l1.1-1.9 1.9.8 1.7-1 .5-2z"/></svg>Configure</span>
+<span class="dash__btn" data-variant="primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 16.5V4.8"/><path d="M7.6 9.2L12 4.8l4.4 4.4"/><path d="M4.5 16.5v1.8a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-1.8"/></svg>Executive brief</span>
+</span>
 </div>
-</div><figcaption>The overview brings posture, assessments and open findings into a single starting point.</figcaption></figure>
-<div class="split__copy">
-<div class="section-head">
-<h2 id="preview-title">One View from Discovery to Closure</h2>
-<p class="lede">See validated findings, remediation status, retest activity, and historical progress in a centralized workspace designed for security and engineering collaboration.</p>
+<div class="dash__panel dash__summary">
+<div class="dash__posture">
+<span class="dash__gauge" data-gauge="3.7" data-gauge-max="10" style="--pct:37.00">
+<strong data-count="3.7" data-decimals="1">3.7</strong><span>/ 10</span>
+</span>
+<div>
+<p class="dash__posture-label">Unified posture</p>
+<p class="dash__posture-state">At Risk</p>
+<p class="dash__delta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg><strong>+0.5</strong> since Mar 01</p>
 </div>
-<div class="btn-row" data-reveal><a class="btn btn--secondary" href="/itrust-preview/platform/" data-track="cta_secondary_click" data-track-label="Home — explore platform"><span>Explore the Platform</span><span class="btn__icon btn__icon--arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span></a></div>
-</div></div></div></section>
+</div>
+<div class="dash__scores"><button class="dash__score" type="button" data-dash-score="rating" aria-pressed="false">
+<span class="dash__score-name"><i data-tone="brand" aria-hidden="true"></i>iTrust Rating</span>
+<span class="dash__score-value"><strong data-count="0.8" data-decimals="1">0.8</strong><span>/10</span></span>
+<span class="dash__meter" aria-hidden="true"><i data-tone="critical" style="--fill:8%;width:8%"></i></span>
+<svg class="dash__spark" viewBox="0 0 96 30" preserveAspectRatio="none" aria-hidden="true" focusable="false" data-tone="brand">
+<polyline points="0.0,19.3 12.0,22.2 24.0,16.4 36.0,19.3 48.0,13.6 60.0,16.4 72.0,7.8 84.0,10.7 96.0,2.0" fill="none" stroke="currentColor" stroke-width="2"
+ stroke-linecap="round" stroke-linejoin="round" pathLength="100"></polyline>
+<circle cx="96.0" cy="2.0" r="2.4" fill="currentColor"></circle>
+</svg>
+</button><button class="dash__score" type="button" data-dash-score="vendors" aria-pressed="false">
+<span class="dash__score-name"><i data-tone="success" aria-hidden="true"></i>Vendors</span>
+<span class="dash__score-value"><strong data-count="6.4" data-decimals="1">6.4</strong><span>/10</span></span>
+<span class="dash__meter" aria-hidden="true"><i data-tone="medium" style="--fill:64%;width:64%"></i></span>
+<svg class="dash__spark" viewBox="0 0 96 30" preserveAspectRatio="none" aria-hidden="true" focusable="false" data-tone="success">
+<polyline points="0.0,15.0 12.0,8.5 24.0,11.8 36.0,5.3 48.0,8.5 60.0,2.0 72.0,5.3 84.0,2.0 96.0,2.0" fill="none" stroke="currentColor" stroke-width="2"
+ stroke-linecap="round" stroke-linejoin="round" pathLength="100"></polyline>
+<circle cx="96.0" cy="2.0" r="2.4" fill="currentColor"></circle>
+</svg>
+</button><button class="dash__score" type="button" data-dash-score="pentests" aria-pressed="false">
+<span class="dash__score-name"><i data-tone="violet" aria-hidden="true"></i>Penetration Tests</span>
+<span class="dash__score-value"><strong data-count="3.8" data-decimals="1">3.8</strong><span>/10</span></span>
+<span class="dash__meter" aria-hidden="true"><i data-tone="high" style="--fill:38%;width:38%"></i></span>
+<svg class="dash__spark" viewBox="0 0 96 30" preserveAspectRatio="none" aria-hidden="true" focusable="false" data-tone="violet">
+<polyline points="0.0,21.5 12.0,18.3 24.0,18.3 36.0,15.0 48.0,11.8 60.0,8.5 72.0,5.3 84.0,2.0 96.0,2.0" fill="none" stroke="currentColor" stroke-width="2"
+ stroke-linecap="round" stroke-linejoin="round" pathLength="100"></polyline>
+<circle cx="96.0" cy="2.0" r="2.4" fill="currentColor"></circle>
+</svg>
+</button></div>
+</div>
+<div class="dash__panel dash__modules">
+<button class="dash__modules-head" type="button" data-dash-collapse aria-expanded="true" aria-controls="dash-modules">
+<span class="dash__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9.5l6 6 6-6"/></svg></span>
+<span>
+<strong>Modules</strong>
+<span>iTrust Rating · Vendors · Penetration Tests</span>
+</span>
+</button>
+<div class="dash__module-grid" id="dash-modules"><article class="dash__module" data-dash-module="rating" tabindex="-1">
+<header class="dash__module-head">
+<span class="dash__module-icon" data-tone="rating"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8.5 20v-6"/><path d="M13 20V9"/><path d="M17.5 20v-9.5"/></svg></span>
+<span class="dash__module-title">
+<strong>iTrust Rating</strong>
+<span>Your posture</span>
+</span>
+<span class="dash__open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span>
+</header>
+<div class="dash__module-body">
+<div class="dash__figure">
+<p class="dash__big">
+<strong data-count="0.8" data-decimals="1">0.8</strong>
+<span>/ 10</span>
+</p>
+<span class="dash__ring" data-ring="8" style="--pct:8" aria-hidden="true"><span>8%</span></span>
+</div>
+<p><span class="dash__badge" data-tone="critical"><i aria-hidden="true"></i>Critical</span></p>
+<p class="dash__trend-label">16-week trend</p>
+<span class="dash__trend"><svg class="dash__spark" viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true" focusable="false" data-tone="brand">
+<polyline points="0.0,30.6 22.2,30.6 44.4,24.9 66.7,24.9 88.9,19.1 111.1,13.4 133.3,7.7 155.6,2.0 177.8,2.0 200.0,2.0" fill="none" stroke="currentColor" stroke-width="2"
+ stroke-linecap="round" stroke-linejoin="round" pathLength="100"></polyline>
+<circle cx="200.0" cy="2.0" r="2.4" fill="currentColor"></circle>
+</svg></span>
+</div>
+<footer class="dash__module-foot">Risk profile 0 / 3 surveys complete · +0.4 since Mar</footer>
+</article><article class="dash__module" data-dash-module="vendors" tabindex="-1">
+<header class="dash__module-head">
+<span class="dash__module-icon" data-tone="vendors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="8.5" r="3.4"/><path d="M3.5 20c0-3.3 2.5-5.4 5.5-5.4s5.5 2.1 5.5 5.4"/><path d="M16 5.6a3.4 3.4 0 0 1 0 6.6"/><path d="M17.5 20c0-2.4-.7-4-1.9-5"/></svg></span>
+<span class="dash__module-title">
+<strong>Vendors</strong>
+<span>Vendor risk intelligence</span>
+</span>
+<span class="dash__open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span>
+</header>
+<div class="dash__module-body">
+<div class="dash__figure">
+<p class="dash__big">
+<strong data-count="148">148</strong>
+</p>
+</div>
+<p class="dash__unit">vendors monitored</p>
+<div class="dash__stats">
+<span class="dash__stat">
+<strong data-tone="high" data-count="12">12</strong>
+<span>High risk</span>
+</span>
+<span class="dash__stat">
+<strong data-tone="critical" data-count="3">3</strong>
+<span>Breached</span>
+</span>
+<span class="dash__stat">
+<strong data-tone="ink" data-count="6.1" data-decimals="1">6.1</strong>
+<span>Avg rating</span>
+</span>
+</div>
+<span class="dash__segbar" aria-hidden="true">
+<i data-tone="success" style="--seg:64%"></i>
+<i data-tone="medium" style="--seg:27%"></i>
+<i data-tone="high" style="--seg:9%"></i>
+</span>
+<p class="dash__legend">
+<span data-tone="success">96 low</span>
+<span data-tone="medium">40 med</span>
+<span data-tone="high">12 high</span>
+</p>
+</div>
+<footer class="dash__module-foot">7 assessments pending your review</footer>
+</article><article class="dash__module" data-dash-module="pentests" tabindex="-1">
+<header class="dash__module-head">
+<span class="dash__module-icon" data-tone="pentests"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/><path d="M12 1.8v2.6M12 19.6v2.6M1.8 12h2.6M19.6 12h2.6"/></svg></span>
+<span class="dash__module-title">
+<strong>Penetration Tests</strong>
+<span>Offensive testing</span>
+</span>
+<span class="dash__open">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg></span>
+</header>
+<div class="dash__module-body">
+<p class="dash__pillrow">
+<span class="dash__livepill"><i aria-hidden="true"></i>Test live · 62%</span>
+<span class="dash__pillnote">Q2 External Network &amp; Web App</span>
+</p>
+<div class="dash__figure">
+<p class="dash__big">
+<strong data-count="14">14</strong>
+</p>
+</div>
+<p class="dash__unit">open findings</p>
+<span class="dash__segbar" aria-hidden="true">
+<i data-tone="critical" style="--seg:21%"></i>
+<i data-tone="high" style="--seg:36%"></i>
+<i data-tone="medium" style="--seg:29%"></i>
+<i data-tone="brand" style="--seg:14%"></i>
+</span>
+<p class="dash__legend">
+<span data-tone="critical">3 crit</span>
+<span data-tone="high">5 high</span>
+<span data-tone="medium">4 med</span>
+<span data-tone="brand">2 low</span>
+</p>
+</div>
+<footer class="dash__module-foot">Remediation 48% · median fix 6.2d</footer>
+</article></div>
+</div>
+</div></div>
+<figcaption>Posture, module scores and open findings in one starting point. Select a score to jump to its module.</figcaption>
+</figure>
+</div></section>
 <section class="section section--subtle" aria-labelledby="offer-title">
 <div class="container">
 <div class="split split--copy-wide split--top">

@@ -417,6 +417,119 @@
     });
   })();
 
+  /* --- Overview dashboard ----------------------------------------------- */
+  /* Reveals on scroll (counters, meters, rings, sparklines), collapses its
+     module group, and cross-highlights a module from the summary row. */
+  (function dashboard() {
+    document.querySelectorAll('[data-dashboard]').forEach(function (root) {
+      var counters = Array.prototype.slice.call(root.querySelectorAll('[data-count]'));
+      var gauges = Array.prototype.slice.call(root.querySelectorAll('[data-gauge], [data-ring]'));
+
+      function setRings(progress) {
+        gauges.forEach(function (el) {
+          var target = parseFloat(el.getAttribute('data-ring') || '0');
+          if (el.hasAttribute('data-gauge')) {
+            var max = parseFloat(el.getAttribute('data-gauge-max')) || 10;
+            target = (parseFloat(el.getAttribute('data-gauge')) / max) * 100;
+          }
+          el.style.setProperty('--pct', (target * progress).toFixed(2));
+        });
+      }
+
+      function setCounters(progress) {
+        counters.forEach(function (el) {
+          var target = parseFloat(el.getAttribute('data-count'));
+          if (isNaN(target)) return;
+          var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+          el.textContent = (target * progress).toFixed(decimals);
+        });
+      }
+
+      function finish() {
+        setRings(1);
+        setCounters(1);
+        root.classList.add('is-shown');
+      }
+
+      function animate() {
+        if (root.dataset.shown === 'true') return;
+        root.dataset.shown = 'true';
+        root.classList.add('is-shown');
+        root.removeAttribute('data-prep');
+        // Reset the bars to zero width for one frame, then let CSS ease them out.
+        root.querySelectorAll('.dash__meter i, .dash__segbar i').forEach(function (el) {
+          el.style.transition = 'none';
+          el.style.width = '0';
+          void el.offsetWidth;
+          el.style.transition = '';
+          el.style.width = '';
+        });
+        if (reduceMotion.matches) { finish(); return; }
+        var start = null;
+        var duration = 1100;
+        (function step(now) {
+          if (start === null) start = now;
+          var t = Math.min((now - start) / duration, 1);
+          // easeOutCubic
+          var eased = 1 - Math.pow(1 - t, 3);
+          setRings(eased);
+          setCounters(eased);
+          if (t < 1) window.requestAnimationFrame(step);
+          else finish();
+        })(window.performance.now());
+      }
+
+      // The markup already carries the real values, so they are only reset to
+      // zero when this script is about to animate them up.
+      if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+        finish();
+        root.dataset.shown = 'true';
+      } else {
+        root.setAttribute('data-prep', 'true');
+        setRings(0);
+        setCounters(0);
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { animate(); io.disconnect(); }
+          });
+        }, { threshold: 0.25 });
+        io.observe(root);
+      }
+
+      /* Collapse / expand the module group. */
+      var collapse = root.querySelector('[data-dash-collapse]');
+      var grid = root.querySelector('.dash__module-grid');
+      if (collapse && grid) {
+        collapse.addEventListener('click', function () {
+          var open = collapse.getAttribute('aria-expanded') === 'true';
+          collapse.setAttribute('aria-expanded', String(!open));
+          if (open) grid.setAttribute('hidden', '');
+          else grid.removeAttribute('hidden');
+        });
+      }
+
+      /* Summary row highlights the matching module card. */
+      var scores = Array.prototype.slice.call(root.querySelectorAll('[data-dash-score]'));
+      var modules = Array.prototype.slice.call(root.querySelectorAll('[data-dash-module]'));
+      scores.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var id = btn.getAttribute('data-dash-score');
+          var on = btn.getAttribute('aria-pressed') === 'true';
+          scores.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          modules.forEach(function (m) { m.classList.remove('is-focus'); });
+          if (on) return; // second click clears the highlight
+          btn.setAttribute('aria-pressed', 'true');
+          var card = modules.filter(function (m) { return m.getAttribute('data-dash-module') === id; })[0];
+          if (!card) return;
+          if (grid && grid.hasAttribute('hidden') && collapse) collapse.click();
+          card.classList.add('is-focus');
+          card.focus({ preventScroll: true });
+          card.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'nearest' });
+        });
+      });
+    });
+  })();
+
   /* --- Finding lifecycle walkthrough ------------------------------------ */
   /* Advances on its own, so it ships with a real pause control, pauses when
      the visitor interacts or focuses it, and holds still under reduced motion. */
