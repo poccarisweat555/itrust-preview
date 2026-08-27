@@ -95,6 +95,73 @@
     });
   })();
 
+  /* --- Navigation disclosure menus -------------------------------------- */
+  (function navMenus() {
+    var groups = Array.prototype.slice.call(document.querySelectorAll('[data-nav-group]'));
+    if (!groups.length) return;
+
+    function close(group) {
+      var toggle = group.querySelector('[data-nav-menu-toggle]');
+      var menu = group.querySelector('.nav__menu');
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('hidden', '');
+    }
+    function closeAll(except) {
+      groups.forEach(function (g) { if (g !== except) close(g); });
+    }
+
+    groups.forEach(function (group) {
+      var toggle = group.querySelector('[data-nav-menu-toggle]');
+      var menu = group.querySelector('.nav__menu');
+      if (!toggle || !menu) return;
+
+      function open(focusFirst) {
+        closeAll(group);
+        toggle.setAttribute('aria-expanded', 'true');
+        menu.removeAttribute('hidden');
+        if (focusFirst) {
+          var first = menu.querySelector('a[href]');
+          if (first) first.focus();
+        }
+      }
+
+      toggle.addEventListener('click', function () {
+        if (toggle.getAttribute('aria-expanded') === 'true') close(group);
+        else open(false);
+      });
+
+      toggle.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); open(true); }
+      });
+
+      // Roving arrow keys inside the menu, Escape back to the toggle.
+      menu.addEventListener('keydown', function (e) {
+        var items = Array.prototype.slice.call(menu.querySelectorAll('a[href]'));
+        var i = items.indexOf(document.activeElement);
+        if (e.key === 'Escape') { e.preventDefault(); close(group); toggle.focus(); }
+        else if (e.key === 'ArrowDown' && i > -1) { e.preventDefault(); items[(i + 1) % items.length].focus(); }
+        else if (e.key === 'ArrowUp' && i > -1) { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+        else if (e.key === 'Home') { e.preventDefault(); items[0].focus(); }
+        else if (e.key === 'End') { e.preventDefault(); items[items.length - 1].focus(); }
+      });
+
+      // Close once focus or the pointer leaves the group entirely.
+      group.addEventListener('focusout', function (e) {
+        if (!group.contains(e.relatedTarget)) close(group);
+      });
+      group.addEventListener('mouseleave', function () {
+        if (!group.contains(document.activeElement)) close(group);
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('[data-nav-group]')) closeAll(null);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll(null);
+    });
+  })();
+
   /* --- Scroll reveal ---------------------------------------------------- */
   (function reveal() {
     var items = document.querySelectorAll('[data-reveal]');

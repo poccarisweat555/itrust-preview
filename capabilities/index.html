@@ -33,8 +33,15 @@
 <img src="/itrust-preview/img/logo-lockup-dark-480.png" width="480" height="223" alt="iTrust" fetchpriority="high">
 </a>
 <nav class="nav" aria-label="Main"><a class="nav__link" href="/itrust-preview/platform/">Platform</a>
-<a class="nav__link" href="/itrust-preview/penetration-testing/">Penetration Testing</a>
-<a class="nav__link" aria-current="page" href="/itrust-preview/capabilities/">Capabilities</a>
+<div class="nav__group" data-nav-group>
+<button class="nav__link nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu-1" data-current="true" data-nav-menu-toggle>
+Capabilities
+<span class="nav__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9.5l6 6 6-6"/></svg></span>
+</button>
+<div class="nav__menu" id="nav-menu-1" hidden>
+<a class="nav__menu-link" aria-current="page" href="/itrust-preview/capabilities/">Capabilities overview</a><a class="nav__menu-link" href="/itrust-preview/penetration-testing/">Penetration Testing</a>
+</div>
+</div>
 <a class="nav__link" href="/itrust-preview/partners/">Partners</a>
 <a class="nav__link" href="/itrust-preview/about/">About</a></nav>
 <div class="header__actions">
@@ -48,8 +55,8 @@
 </div></div>
 <div class="drawer" id="site-drawer" data-open="false" data-nav-drawer hidden>
 <nav class="drawer__nav" aria-label="Mobile"><a class="drawer__link" href="/itrust-preview/platform/">Platform</a>
-<a class="drawer__link" href="/itrust-preview/penetration-testing/">Penetration Testing</a>
 <a class="drawer__link" aria-current="page" href="/itrust-preview/capabilities/">Capabilities</a>
+<a class="drawer__link drawer__link--child" href="/itrust-preview/penetration-testing/">Penetration Testing</a>
 <a class="drawer__link" href="/itrust-preview/partners/">Partners</a>
 <a class="drawer__link" href="/itrust-preview/about/">About</a>
 <a class="drawer__link" href="/itrust-preview/request-a-demo/">Request a Demo</a></nav>
